@@ -13,9 +13,17 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class SubCategoryResource extends Resource
 {
+    protected static ?string $navigationLabel = 'SubCategorías';
+    protected static ?string $label = 'SubCategoría';
+    protected static ?string $pluralLabel = 'SubCategorías';
+    protected static ?string $slug = 'subcategorias';
+    protected static string|UnitEnum|null $navigationGroup = 'Datos Operativos';
+
+
     protected static ?string $model = SubCategory::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;

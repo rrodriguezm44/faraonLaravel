@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Nagi\FilamentAbyssTheme\FilamentAbyssThemePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -26,6 +27,13 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
+            ->brandName('Faraón | Admin')
+            // ->brandLogo(asset('image/faraon logo sistema.gif'))
+            // ->brandLogoHeight('3rem')
+            ->favicon(asset('image/ico_faraon.ico'))
+            //->font('Inter')
+            ->sidebarCollapsibleOnDesktop()
+            //->plugin(FilamentAbyssThemePlugin::make())
             ->path('admin')
             ->login()
             ->colors([

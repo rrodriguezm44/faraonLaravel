@@ -21,7 +21,7 @@ class CategoryResource extends Resource
     protected static ?string $label = 'Categoria';
     protected static ?string $pluralLabel = 'Categorias';
     protected static ?string $slug = 'categorias';
-    protected static string|UnitEnum|null $navigationGroup = 'Administración';
+    protected static string|UnitEnum|null $navigationGroup = 'Datos Operativos';
 
     protected static ?string $model = Category::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
