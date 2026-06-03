@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
@@ -25,17 +26,17 @@ class Product extends Model
         'supplier_id',
     ];
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function subCategory()
+    public function subCategory(): BelongsTo
     {
         return $this->belongsTo(SubCategory::class);
     }
 
-    public function supplier()
+    public function supplier(): BelongsTo
     {
         return $this->belongsTo(Supplier::class);
     }
@@ -43,5 +44,10 @@ class Product extends Model
     public function inventories(): HasMany
     {
         return $this->hasMany(Inventory::class);
+    }
+
+    public function orderProducts(): HasMany
+    {
+        return $this->hasMany(OrderProduct::class);
     }
 }

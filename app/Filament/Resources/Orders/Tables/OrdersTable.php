@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Inventories\Tables;
+namespace App\Filament\Resources\Orders\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,22 +8,23 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class InventoriesTable
+class OrdersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('product.description')
-                    ->label('Producto')
-                    ->searchable(),
                 TextColumn::make('warehouse.name')
-                    ->label('Almacén')
                     ->searchable(),
-                TextColumn::make('quantity')
-                    ->label('Cantidad')
+                TextColumn::make('customer.name')
+                    ->searchable(),
+                TextColumn::make('user.name')
+                    ->searchable(),
+                TextColumn::make('total')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('notes')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

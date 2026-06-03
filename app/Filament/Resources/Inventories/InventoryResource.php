@@ -13,9 +13,16 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class InventoryResource extends Resource
 {
+    protected static ?string $navigationLabel = 'Inventarios';
+    protected static ?string $label = 'Inventario';
+    protected static ?string $pluralLabel = 'Inventarios';
+    protected static ?string $slug = 'inventarios';
+    protected static string|UnitEnum|null $navigationGroup = 'Datos Operativos';
+
     protected static ?string $model = Inventory::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
