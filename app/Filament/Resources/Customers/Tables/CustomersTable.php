@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Customers\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -62,6 +63,28 @@ class CustomersTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('exportar_excel')
+                    ->label('Exportar Excel')
+                    ->fileName('clientes')
+                    ->timeFormat('d-m-Y_H-i')
+                    ->defaultFormat('xlsx')
+                    ->icon('heroicon-o-table-cells')
+                    ->color('success'),
+                FilamentExportHeaderAction::make('exportar_pdf')
+                    ->label('Exportar PDF')
+                    ->fileName('clientes')
+                    ->timeFormat('d-m-Y_H-i')
+                    ->defaultFormat('pdf')
+                    ->icon('heroicon-o-document-text')
+                    ->color('danger')
+                    ->extraViewData([
+                        'companyName' => 'Faraon SRL',
+                        'reportTitle' => 'Reporte de Clientes',
+                        'exporData' => now()->format('d/m/Y H:i'),
+                    ]),
+                
             ]);
     }
 }

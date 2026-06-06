@@ -18,16 +18,21 @@ class CategoryForm
                     ->collapsible()
                     ->icon('heroicon-o-tag')
                     ->columns(2)
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Nombre')
-                            ->required()
-                            ->maxLength(255),
-                        TextInput::make('summary')
-                            ->label('Resumen')
-                            ->required()
-                            ->maxLength(255),
-                    ])
+                    ->schema(static::create()),
             ]);
+    }
+
+    public static function create(): array 
+    {
+        return [
+            TextInput::make('name')
+                ->label('Nombre')
+                ->required()
+                ->maxLength(255),
+            TextInput::make('summary')
+                ->label('Resumen')
+                ->required()
+                ->maxLength(255),
+        ];
     }
 }

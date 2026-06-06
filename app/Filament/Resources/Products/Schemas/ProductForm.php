@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use App\Filament\Resources\Categories\Schemas\CategoryForm;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -83,13 +84,17 @@ class ProductForm
                             ->relationship('category', 'name')
                             ->searchable()
                             ->preload()
-                            ->nullable(),
+                            ->nullable()
+                            ->createOptionForm(CategoryForm::create())
+                            ->createOptionModalHeading('Crear Nueva Categoria'),
+
                         Select::make('sub_category_id')
                             ->label('SubCategoría')
                             ->relationship('subCategory', 'name')
                             ->searchable()
                             ->preload()
                             ->nullable(),
+
                         Select::make('supplier_id')
                             ->label('Proveedor')
                             ->relationship('supplier', 'name')
