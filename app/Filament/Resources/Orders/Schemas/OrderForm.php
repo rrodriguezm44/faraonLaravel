@@ -31,13 +31,7 @@ class OrderForm
                             ->relationship('customer', 'name')
                             ->live()
                             ->default(null),
-                        // Select::make('user_id')
-                        //     ->relationship('user', 'name')
-                        //     ->default(null),
-                        // TextInput::make('total')
-                        //     ->required()
-                        //     ->numeric()
-                        //     ->default(0.0),
+
                         TextInput::make('notes')
                             ->columnSpan(2)
                             ->default(null),

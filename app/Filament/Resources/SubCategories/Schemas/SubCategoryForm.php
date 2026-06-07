@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SubCategories\Schemas;
 
+use App\Filament\Resources\Categories\Schemas\CategoryForm;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -26,7 +27,9 @@ class SubCategoryForm
                             ->relationship('category', 'name')
                             ->searchable()
                             ->preload()
-                            ->nullable(),
+                            ->nullable()
+                            ->createOptionForm(CategoryForm::create())
+                            ->createOptionModalHeading('Crear Nueva Categoria'),
                     ]),
             ]);
     }

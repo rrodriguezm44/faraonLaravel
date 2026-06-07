@@ -15,11 +15,15 @@ class SupplierForm
             ->columns(1)
             ->components([
                 Section::make('Información del Proveedor')
-                    ->columns(2)
+                    ->columns(3)
                     ->schema([
                         TextInput::make('name')
                             ->label('Nombre del Proveedor')
                             ->placeholder('Ej: NOMBRE PROVEEDOR')
+                            ->required(),
+                        TextInput::make('razons')
+                            ->label('Razón Social')
+                            ->placeholder('Ej: RAZÓN SOCIAL PROVEEDOR')
                             ->required(),
                         TextInput::make('contact_info')
                             ->label('Persona de Contacto')

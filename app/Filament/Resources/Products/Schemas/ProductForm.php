@@ -7,6 +7,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 
 class ProductForm
@@ -39,15 +41,33 @@ class ProductForm
                         TextInput::make('priceCompra')
                             ->label('Precio de Compra')
                             ->numeric()
+                            ->live()
                             ->minValue(0)
                             ->prefix('Bs.')
-                            ->required(),
+                            ->required()
+                            ->afterStateUpdated(function (Get $get, Set $set, $state) {
+                                if ($state === null) {
+                                    return;
+                                }
+                                $cantPorcent = $get('porcentual') ?? 0;
+                                $priceVenta = $state * (1 + ($cantPorcent / 100));
+                                $set('priceVenta', round($priceVenta, 2));
+                            }),
                         TextInput::make('porcentual')
                             ->label('Porcentual de Incremento')
                             ->numeric()
+                            ->live()
                             ->minValue(0)
                             ->maxValue(100)
-                            ->suffix('%'),
+                            ->suffix('%')
+                            ->afterStateUpdated(function (Get $get, Set $set, $state) {
+                                if ($state === null) {
+                                    return;
+                                }
+                                $precioCompra = $get('priceCompra') ?? 0;
+                                $priceVenta = $precioCompra * (1 + ($state / 100));
+                                $set('priceVenta', round($priceVenta, 2));
+                            }),
                         TextInput::make('priceVenta')
                             ->label('Precio de Venta')
                             ->numeric()

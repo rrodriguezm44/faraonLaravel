@@ -21,7 +21,7 @@ class ProductResource extends Resource
     protected static ?string $label = 'Producto';
     protected static ?string $pluralLabel = 'Productos';
     protected static ?string $slug = 'productos';
-    protected static string|UnitEnum|null $navigationGroup = 'Datos Administrativos';
+    protected static string|UnitEnum|null $navigationGroup = 'Datos Operativos';
 
     protected static ?string $model = Product::class;
 

@@ -21,12 +21,12 @@ class CustomerResource extends Resource
     protected static ?string $label = 'Cliente';
     protected static ?string $pluralLabel = 'Clientes';
     protected static ?string $slug = 'clientes';
-    protected static string|UnitEnum|null $navigationGroup = 'Datos Operativos';
+    protected static string|UnitEnum|null $navigationGroup = 'Datos Administrativos';
 
 
     protected static ?string $model = Customer::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
     protected static ?string $recordTitleAttribute = 'Customer';
 

@@ -51,8 +51,8 @@ class SubCategoryResource extends Resource
     {
         return [
             'index' => ListSubCategories::route('/'),
-            'create' => CreateSubCategory::route('/create'),
-            'edit' => EditSubCategory::route('/{record}/edit'),
+            //'create' => CreateSubCategory::route('/create'),
+            //'edit' => EditSubCategory::route('/{record}/edit'),
         ];
     }
 }
