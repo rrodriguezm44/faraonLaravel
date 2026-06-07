@@ -21,12 +21,12 @@ class SupplierResource extends Resource
     protected static ?string $label = 'Proveedores';
     protected static ?string $pluralLabel = 'Proveedores';
     protected static ?string $slug = 'proveedores';
-    protected static string|UnitEnum|null $navigationGroup = 'Datos Operativos';
+    protected static string|UnitEnum|null $navigationGroup = 'Datos Administrativos';
 
 
     protected static ?string $model = Supplier::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-truck';
 
     protected static ?string $recordTitleAttribute = 'Supplier';
 
