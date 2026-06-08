@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use App\Filament\Resources\Categories\Schemas\CategoryForm;
+use App\Models\SubCategory;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -110,10 +111,31 @@ class ProductForm
 
                         Select::make('sub_category_id')
                             ->label('SubCategoría')
-                            ->relationship('subCategory', 'name')
                             ->searchable()
+                            ->nullable()
                             ->preload()
-                            ->nullable(),
+                            ->live()
+                            ->disabled(function(Get $get){
+                                $categoryId = $get('category_id');
+
+                                if(!$categoryId) {
+                                    return true;
+                                }
+                                return !SubCategory::whereHas('category', function($query) use ($categoryId) {
+                                            $query->where('category_id', $categoryId);
+                                        })->exists();
+                            })
+                            ->relationship('subCategory', 'name')
+                            ->options(function(Get $get): array{
+                                        
+                                $categoryId = $get('category_id');
+                                
+                                $subCategory = SubCategory::whereHas('category', function($query) use ($categoryId) {
+                                    $query->where('category_id', $categoryId);
+                                })->pluck('name', 'id')->toArray();
+                                
+                                return $subCategory;
+                            }),
 
                         Select::make('supplier_id')
                             ->label('Proveedor')
