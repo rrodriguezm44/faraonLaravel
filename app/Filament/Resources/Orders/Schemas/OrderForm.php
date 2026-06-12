@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Orders\Schemas;
 
+use App\Filament\Resources\Customers\Schemas\CustomerForm;
+use App\Models\Customer;
 use App\Models\Inventory;
 use App\Models\Product;
 use Filament\Forms\Components\Repeater;
@@ -24,15 +26,30 @@ class OrderForm
                     ->columns(2)
                     ->schema([
                         Select::make('warehouse_id')
+                            ->label('Almacén')
                             ->relationship('warehouse', 'name')
                             ->live()
                             ->default(null),
                         Select::make('customer_id')
+                            ->label('Cliente')
                             ->relationship('customer', 'name')
                             ->live()
-                            ->default(null),
+                            ->default(null)
+                            ->createOptionForm(CustomerForm::create())
+                            ->createOptionModalHeading('Crear Nuevo Cliente')
+                            ->helperText(function(Get $get){
+                                    $clienteId = $get('customer_id');
+
+                                    $nivelCliente = Customer::query()
+                                        ->where('id', $clienteId)
+                                        ->value('level') ?? '';
+
+                                    return "Categoria Cliente: {$nivelCliente}";
+
+                            }),
 
                         TextInput::make('notes')
+                            ->label('Observaciones')
                             ->columnSpan(2)
                             ->default(null),
                     ]),
@@ -78,6 +95,16 @@ class OrderForm
                                         })->pluck('description', 'id')->toArray();
                                         
                                         return $product;
+                                    })
+                                     ->helperText(function(Get $get){
+                                        $productId = $get('product_id');
+
+                                        $precioVenta = Product::query()
+                                            ->where('id', $productId)
+                                            ->value('priceVenta') ?? 0;
+
+                                        return "Precio de venta: {$precioVenta}";
+
                                     }),
                                 TextInput::make('quantity')
                                     ->label('Cantidad')
@@ -96,7 +123,7 @@ class OrderForm
 
                                         return "Stock disponible: {$stock}";
 
-                                    })
+                                    })                                    
                                     ->afterStateUpdated(function(Get $get, Set $set, $state){
                                         $productId = $get('product_id');
                                         $quantity = $get('quantity');

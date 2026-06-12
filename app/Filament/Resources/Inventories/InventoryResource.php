@@ -25,7 +25,7 @@ class InventoryResource extends Resource
 
     protected static ?string $model = Inventory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-archive-box';
 
     protected static ?string $recordTitleAttribute = 'Inventory';
 
