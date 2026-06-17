@@ -16,9 +16,11 @@ class SubCategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Sub Categoría')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('category.name')
+                    ->label('Categoría')
                     ->searchable()
                     ->sortable(),
             ])

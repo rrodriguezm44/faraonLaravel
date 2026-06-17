@@ -16,15 +16,19 @@ class OrdersTable
         return $table
             ->columns([
                 TextColumn::make('warehouse.name')
+                    ->label('Almacenes')
                     ->searchable(),
                 TextColumn::make('customer.name')
+                    ->label('Clientes')
                     ->searchable(),
                 TextColumn::make('user.name')
+                    ->label('Usuario')
                     ->searchable(),
                 TextColumn::make('total')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('notes')
+                    ->label('Observaciones')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
